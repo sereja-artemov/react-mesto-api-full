@@ -1,0 +1,6 @@
+.popup-card__img {
+  max-width: 75vw;
+  max-height: 75vh;
+  min-width: 50px;
+  min-height: 50px;
+}

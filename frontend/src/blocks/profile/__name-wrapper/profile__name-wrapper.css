@@ -1,0 +1,13 @@
+.profile__name-wrapper {
+  display: flex;
+  align-items: baseline;
+  padding: 0 28px;
+  transform: translateX(14px);
+}
+
+@media screen and (min-width: 1280px) {
+  .profile__name-wrapper {
+    padding: 0;
+    transform: none;
+  }
+}

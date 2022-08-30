@@ -1,0 +1,9 @@
+.cards__image {
+  width: 100%;
+  height: 282px;
+  object-fit: cover;
+  object-position: center center;
+}
+.cards__image:hover {
+  cursor: pointer;
+}

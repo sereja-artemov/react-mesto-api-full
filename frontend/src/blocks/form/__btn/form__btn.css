@@ -1,0 +1,20 @@
+.form__btn {
+  margin-top: 45px;
+  margin-bottom: 15px;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 14px 28px;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+}
+.form__btn:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+@media screen and (min-width: 425px) {
+  .form__btn {
+    font-size: 18px;
+  }
+}

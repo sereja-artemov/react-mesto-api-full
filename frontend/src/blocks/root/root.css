@@ -1,0 +1,9 @@
+.root {
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.21;
+  font-weight: 400;
+  color: #fff;
+  background-color: #000;
+  min-height: 100vh;
+}

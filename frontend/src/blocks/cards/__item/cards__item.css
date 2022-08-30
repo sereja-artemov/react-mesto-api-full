@@ -1,0 +1,11 @@
+.cards__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 361px;
+  width: 282px;
+  color: #000;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}

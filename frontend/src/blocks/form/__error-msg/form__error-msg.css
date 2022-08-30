@@ -1,0 +1,11 @@
+.form__error-msg {
+  display: none;
+  z-index: 99999;
+  position: absolute;
+  left: 0;
+  padding-top: 4px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+}

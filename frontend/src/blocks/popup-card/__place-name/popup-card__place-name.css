@@ -1,0 +1,6 @@
+.popup-card__place-name {
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  font-size: 12px;
+}

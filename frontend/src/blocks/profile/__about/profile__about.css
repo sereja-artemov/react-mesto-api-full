@@ -1,0 +1,7 @@
+.profile__about {
+  margin: 0;
+  line-height: 1.21;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

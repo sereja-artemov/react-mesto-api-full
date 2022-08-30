@@ -1,0 +1,7 @@
+.form__item_color_white {
+    color: #fff;
+    border-bottom: 2px solid #ccc;
+}
+.form__item_color_white:focus {
+    border-bottom: 2px solid #fff;
+}

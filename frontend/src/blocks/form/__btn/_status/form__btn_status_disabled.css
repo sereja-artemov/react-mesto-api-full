@@ -1,0 +1,12 @@
+.form__btn_status_disabled {
+  pointer-events: none;
+  background-color: inherit;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  opacity: .2;
+  color: #000000;
+}
+.form__btn_status_disabled:hover {
+  opacity: .2;
+}
+
