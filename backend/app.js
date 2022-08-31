@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
+const cors = require('cors');
 
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
@@ -17,6 +18,21 @@ const { signupValidation, signinValidation } = require('./middlewares/validation
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
+
+const options = {
+  origin: [
+    'http://localhost:3005',
+    'https://ВАШ ДОМЕЙН С ДОКУМЕНТА',
+    'https://YOUR.github.io',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
+
+app.use('*', cors(options));
 
 app.use(cookieParser());
 app.use(express.json());

@@ -13,8 +13,11 @@ const login = (req, res, next) => {
     // eslint-disable-next-line consistent-return
     .then((user) => {
       // создаем токен
-      const { JWT_SECRET } = process.env;
-      const jwtToken = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+      const { NODE_ENV, JWT_SECRET } = process.env;
+      const jwtToken = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        { expiresIn: '7d' });
       res.cookie('jwt', jwtToken, {
         httpOnly: true,
         sameSite: true,

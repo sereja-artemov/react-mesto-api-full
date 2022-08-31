@@ -186,12 +186,8 @@ function App() {
     setIsLoading(true);
     return userAuth
       .auth(email, password)
-      .then((data) => {
-        if (data.token) {
-          localStorage.setItem("token", data.token);
-          setLoggedIn(true);
-          history.push("/");
-        }
+      .then(() => {
+        checkToken();
       })
       .catch((err) => {
         openTooltip(crossImage, 'Что-то пошло не так! Попробуйте ещё раз.');
@@ -200,19 +196,17 @@ function App() {
   };
 
   const checkToken = () => {
-    const token = localStorage.getItem("token");
-    if (token) {
       userAuth
-        .getToken(token)
+        .getToken()
         .then((res) => {
           if (res) {
-            setUserData(res.data);
+            setUserData(res);
             setLoggedIn(true);
             history.push("/");
           }
         })
         .catch((err) => err);
-    }
+
   };
 
   function onClickExit() {
