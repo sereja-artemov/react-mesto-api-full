@@ -22,6 +22,17 @@ export const auth = (email, password) => {
   }).then(getData);
 };
 
+export const logout = (email) => {
+  return fetch(`${BASE_URL}/logout`, {
+    method: "DELETE",
+    credentials: 'include',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ 'email': email }),
+  }).then(getData);
+}
+
 export const getToken = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",

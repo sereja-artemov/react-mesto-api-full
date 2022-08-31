@@ -210,9 +210,12 @@ function App() {
   };
 
   function onClickExit() {
-    localStorage.removeItem("token");
-    setLoggedIn(false);
-    history.push("/sign-in");
+    userAuth.logout()
+        .then((res) => {
+          setLoggedIn(false);
+          history.push("/sign-in");
+        })
+        .catch((err) => err);
   }
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const jsonwebtoken = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const UserModel = require('../models/user');
 const ValidationError = require('../error/ValidationError');
@@ -14,7 +14,7 @@ const login = (req, res, next) => {
     .then((user) => {
       // создаем токен
       const { NODE_ENV, JWT_SECRET } = process.env;
-      const jwtToken = jwt.sign(
+      const jwtToken = jsonwebtoken.sign(
         { _id: user._id },
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' });
@@ -116,6 +116,19 @@ const updateAvatar = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req, res, next) => {
+
+    const { jwt } = req.cookies;
+
+    if (!jwt) {
+      throw new ValidationError('Отсутствует токен');
+    }
+
+    res.status(200).clearCookie('jwt')
+      .send({ message: 'Вы успешно вышли из системы!' })
+      .catch(next);
+};
+
 module.exports = {
   login,
   createUser,
@@ -124,4 +137,5 @@ module.exports = {
   getUser,
   updateUser,
   updateAvatar,
+  logout,
 };

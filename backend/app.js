@@ -7,7 +7,7 @@ const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 const cors = require('cors');
 
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, logout} = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const error = require('./middlewares/error');
 const usersRouter = require('./routes/users');
@@ -55,6 +55,7 @@ app.use(auth);
 
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
+app.delete('/logout', logout);
 
 app.use('*', (req, res) => {
   try {
