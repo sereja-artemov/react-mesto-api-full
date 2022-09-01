@@ -47,7 +47,7 @@ function Header({ userData, loggedIn, onClickExit }) {
             isMenuActive && "header__nav_status_opened"
           }`}
         >
-          <Link to={`mailto:${userData.email}`} className="header__email">
+          <Link to="/" className="header__email">
             {userData.email}
           </Link>
           <button onClick={onClickExit} className="header__logout">

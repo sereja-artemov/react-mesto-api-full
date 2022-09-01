@@ -43,6 +43,7 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
+    checkToken();
     if (loggedIn) {
       api
         .getUserInfo()
@@ -217,10 +218,6 @@ function App() {
         })
         .catch((err) => err);
   }
-
-  useEffect(() => {
-    checkToken();
-  }, [loggedIn]);
 
   function openTooltip(image, text) {
     setTooltipText(text);
