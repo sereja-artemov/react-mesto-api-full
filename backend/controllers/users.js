@@ -111,7 +111,7 @@ const updateAvatar = (req, res, next) => {
       if (!user) {
         throw new NotFound('Пользователь с указанным _id не найден.');
       }
-      res.status(200).send({ data: user });
+      res.status(200).send(user);
     })
     .catch(next);
 };

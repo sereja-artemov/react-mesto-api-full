@@ -39,7 +39,7 @@ const delCard = (req, res, next) => {
 const addLikeCard = (req, res, next) => {
   cardModel.findByIdAndUpdate(
     req.params.cardId,
-    { $addToSet: { likes: req.user._id } }, // добавить _id в массив, если его там нет
+    { $addToSet: { likes: {_id: req.user._id} } }, // добавить _id в массив, если его там нет
     { new: true },
   )
     .then((card) => {
