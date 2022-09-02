@@ -23,7 +23,7 @@ const options = {
   origin: [
     'http://localhost:3005',
     'https://ВАШ ДОМЕЙН С ДОКУМЕНТА',
-    'https://YOUR.github.io',
+    'https://sereja-artemov.github.io/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -47,6 +47,13 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.post('/signup', signupValidation, createUser);
 
 app.post('/signin', signinValidation, login);
