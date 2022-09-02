@@ -40,7 +40,7 @@ const addLikeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Передан несуществующий _id карточки.');
       }
-      res.status(200).send({ data: card });
+      res.status(200).send(card);
     })
     .catch(next);
 };
@@ -48,14 +48,14 @@ const addLikeCard = (req, res, next) => {
 const removeLikeCard = (req, res, next) => {
   cardModel.findByIdAndUpdate(
     req.params.cardId,
-    { $pull: { likes: req.user._id } }, // убрать _id из массива
+    { $pull: { likes: {_id: req.user._id} } }, // убрать _id из массива
     { new: true },
   )
     .then((card) => {
       if (!card) {
         throw new NotFoundError('Передан несуществующий _id карточки.');
       }
-      res.status(200).send({ data: card });
+      res.status(200).send(card);
     })
     .catch(next);
 };
