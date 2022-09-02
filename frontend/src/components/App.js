@@ -52,7 +52,7 @@ function App() {
 
       api
         .getInitialCards()
-        .then((data) => setCards(data))
+        .then((data) => setCards(data.reverse()))
         .catch((err) => console.log(err));
     }
   }, [loggedIn]);
@@ -133,7 +133,7 @@ function App() {
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
-      .changeLikeCardStatus(card._id, !isLiked)
+      .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
