@@ -1,9 +1,9 @@
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "http://frontend.mesto.students.nomorepartiesxyz.ru";
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
-    credentials: 'include',
+    // credentials: 'include',
     headers: {
       "Content-Type": "application/json",
     },
