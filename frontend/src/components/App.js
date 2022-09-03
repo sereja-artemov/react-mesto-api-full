@@ -187,7 +187,8 @@ function App() {
     setIsLoading(true);
     return userAuth
       .auth(email, password)
-      .then(() => {
+      .then((res) => {
+        localStorage.setItem('jwt', res.token);
         checkToken();
       })
       .catch((err) => {
