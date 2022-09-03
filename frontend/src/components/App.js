@@ -187,8 +187,7 @@ function App() {
     setIsLoading(true);
     return userAuth
       .auth(email, password)
-      .then((res) => {
-        localStorage.setItem('jwt', res.token);
+      .then(() => {
         checkToken();
       })
       .catch((err) => {
@@ -202,6 +201,7 @@ function App() {
         .getToken()
         .then((res) => {
           if (res) {
+            localStorage.setItem('jwt', res.token);
             setUserData(res);
             setLoggedIn(true);
             history.push("/");
@@ -214,6 +214,7 @@ function App() {
   function onClickExit() {
     userAuth.logout()
         .then((res) => {
+          localStorage.removeItem('jwt');
           setLoggedIn(false);
           history.push("/sign-in");
         })
