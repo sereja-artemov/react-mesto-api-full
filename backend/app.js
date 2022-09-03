@@ -22,7 +22,7 @@ const app = express();
 const options = {
   origin: [
     'http://localhost:3005',
-    'http://frontend.mesto.students.nomorepartiesxyz.ru',
+    'https://frontend.mesto.students.nomorepartiesxyz.ru',
     'https://sereja-artemov.github.io/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
