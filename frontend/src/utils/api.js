@@ -22,8 +22,8 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(data),
       credentials: 'include',
+      body: JSON.stringify(data),
     }).then(this._getData);
   }
 
@@ -43,10 +43,10 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         avatar: avatar,
       }),
-      credentials: 'include',
     }).then(this._getData);
   }
 
@@ -58,21 +58,21 @@ class Api {
     }).then(this._getData);
   }
 
-  setLike(dataId) {
-    return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-      credentials: 'include',
-    }).then(this._getData);
-  }
-
-  removeLike(dataId) {
-    return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
-      credentials: 'include',
-    }).then(this._getData);
-  }
+  // setLike(dataId) {
+  //   return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
+  //     method: "PUT",
+  //     headers: this._headers,
+  //     credentials: 'include',
+  //   }).then(this._getData);
+  // }
+  //
+  // removeLike(dataId) {
+  //   return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
+  //     method: "DELETE",
+  //     headers: this._headers,
+  //     credentials: 'include',
+  //   }).then(this._getData);
+  // }
 
   changeLikeCardStatus(dataId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {

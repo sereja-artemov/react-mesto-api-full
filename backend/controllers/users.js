@@ -6,6 +6,8 @@ const ConflictError = require('../error/ConflictError');
 const NotFound = require('../error/NotFoundError');
 const errCode = require('../const');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
@@ -13,7 +15,6 @@ const login = (req, res, next) => {
     // eslint-disable-next-line consistent-return
     .then((user) => {
       // создаем токен
-      const { NODE_ENV, JWT_SECRET } = process.env;
       const jwtToken = jsonwebtoken.sign(
         { _id: user._id },
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
@@ -22,6 +23,7 @@ const login = (req, res, next) => {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
         sameSite: true,
+        secure: true,
       });
       res.send({ token: jwtToken });
     })
@@ -125,12 +127,12 @@ const logout = (req, res, next) => {
       throw new ValidationError('Отсутствует токен');
     }
 
-    localStorage.removeItem('jwt');
-
-    res.status(200).clearCookie('jwt')
+    res.status(200).clearCookie('jwt', {
+      sameSite: 'none',
+      secure: true,
+    })
       .send({ message: 'Вы успешно вышли из системы!' })
       .catch(next);
-
 };
 
 module.exports = {
