@@ -7,14 +7,14 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._getData);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._getData);
   }
 
@@ -23,7 +23,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(data),
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._getData);
   }
 
@@ -31,7 +31,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -46,7 +46,7 @@ class Api {
       body: JSON.stringify({
         avatar: avatar,
       }),
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._getData);
   }
 
@@ -54,7 +54,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${data._id}`, {
       method: "DELETE",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._getData);
   }
 
@@ -62,7 +62,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
       method: "PUT",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._getData);
   }
 
@@ -70,7 +70,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._getData);
   }
 
@@ -78,7 +78,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
       method: isLiked ? "DELETE" : "PUT",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._getData);
   }
 
