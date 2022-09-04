@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.mesto.students.nomorepartiesxyz.ru";
+export const BASE_URL = "http://localhost:3000";
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -6,6 +6,7 @@ export const register = (email, password) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: 'include',
     body: JSON.stringify({ email, password }),
   }).then(getData);
 };
@@ -15,6 +16,7 @@ export const auth = (email, password) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
     credentials: 'include',
     body: JSON.stringify({ email, password }),
@@ -26,6 +28,7 @@ export const logout = (email) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
     credentials: 'include',
     body: JSON.stringify({ 'email': email }),
@@ -37,6 +40,7 @@ export const getToken = () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
     credentials: 'include',
   })
