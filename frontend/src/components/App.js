@@ -187,7 +187,8 @@ function App() {
     setIsLoading(true);
     return userAuth
       .auth(email, password)
-      .then(() => {
+      .then((res) => {
+        localStorage.setItem('jwt', res.token);
         checkToken();
       })
       .catch((err) => {
@@ -201,7 +202,6 @@ function App() {
         .getToken()
         .then((res) => {
           if (res) {
-            localStorage.setItem('jwt', res.token);
             setUserData(res);
             setLoggedIn(true);
             history.push("/");
