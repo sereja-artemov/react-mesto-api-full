@@ -1,3 +1,5 @@
+import {BASE_URL} from './userAuth';
+
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
@@ -22,8 +24,8 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      credentials: 'include',
       body: JSON.stringify(data),
+      credentials: 'include',
     }).then(this._getData);
   }
 
@@ -43,10 +45,10 @@ class Api {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      credentials: 'include',
       body: JSON.stringify({
         avatar: avatar,
       }),
+      credentials: 'include',
     }).then(this._getData);
   }
 
@@ -58,21 +60,21 @@ class Api {
     }).then(this._getData);
   }
 
-  // setLike(dataId) {
-  //   return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
-  //     method: "PUT",
-  //     headers: this._headers,
-  //     credentials: 'include',
-  //   }).then(this._getData);
-  // }
-  //
-  // removeLike(dataId) {
-  //   return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
-  //     method: "DELETE",
-  //     headers: this._headers,
-  //     credentials: 'include',
-  //   }).then(this._getData);
-  // }
+  setLike(dataId) {
+    return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+      credentials: 'include',
+    }).then(this._getData);
+  }
+
+  removeLike(dataId) {
+    return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+      credentials: 'include',
+    }).then(this._getData);
+  }
 
   changeLikeCardStatus(dataId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
@@ -88,11 +90,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.mesto.students.nomorepartiesxyz.ru",
+  baseUrl: BASE_URL,
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    "Content-Type": "application/json",
   },
 });
 
