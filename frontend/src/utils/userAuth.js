@@ -16,7 +16,7 @@ export const auth = (email, password) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      // Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
     credentials: 'include',
     body: JSON.stringify({ email, password }),
@@ -28,7 +28,7 @@ export const logout = (email) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      // Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
     credentials: 'include',
     body: JSON.stringify({ 'email': email }),
@@ -40,7 +40,7 @@ export const getToken = () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      // Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
     credentials: 'include',
   })

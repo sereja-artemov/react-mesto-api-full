@@ -24,8 +24,8 @@ const login = (req, res, next) => {
         sameSite: 'none',
         secure: true,
       })
-      res.send({ token: jwtToken });
-      // .send({message: 'Авторизация прошла успешно'})
+      // res.send({ token: jwtToken });
+      .send({message: 'Авторизация прошла успешно'})
     })
     .catch(next);
 };
