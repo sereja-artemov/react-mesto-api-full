@@ -17,9 +17,9 @@ const NotFoundError = require('./error/NotFoundError');
 const errCode = require('./const');
 const { signupValidation, signinValidation } = require('./middlewares/validations');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { PORT = 3000 } = process.env;
 
 const app = express();
+const { PORT = 3000 } = process.env;
 
 const options = {
   origin: '*',
@@ -31,6 +31,9 @@ const options = {
 };
 
 app.use(cors());
+
+// app.use(cors());
+// app.options('*', cors());
 
 app.use(express.json());
 app.use(express.urlencoded({
