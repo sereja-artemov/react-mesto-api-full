@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 require('dotenv').config();
-const { PORT = 3000 } = process.env;
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
@@ -18,6 +17,7 @@ const NotFoundError = require('./error/NotFoundError');
 const errCode = require('./const');
 const { signupValidation, signinValidation } = require('./middlewares/validations');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { PORT = 3000 } = process.env;
 
 const app = express();
 
