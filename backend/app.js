@@ -22,12 +22,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const app = express();
 
 const options = {
-  origin: [
-    'http://localhost:3005',
-    'http://localhost:3000',
-    'https://frontend.mesto.students.nomorepartiesxyz.ru',
-    'https://sereja-artemov.github.io/',
-  ],
+  origin: '*',
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
   optionsSuccessStatus: 204,
@@ -35,7 +30,7 @@ const options = {
   credentials: true,
 };
 
-app.use('*', cors(options));
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({
