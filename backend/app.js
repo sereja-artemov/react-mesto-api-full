@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 require('dotenv').config();
+const { PORT = 3000 } = process.env;
+
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
@@ -85,4 +87,4 @@ app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors());
 app.use(error);
 
-app.listen(3000);
+app.listen(PORT);
