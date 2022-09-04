@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 const cors = require('cors');
@@ -34,8 +34,15 @@ const options = {
 
 app.use('*', cors(options));
 
-app.use(cookieParser());
 app.use(express.json());
+app.use(express.urlencoded({
+  extended: true,
+}));
+
+app.use(requestLogger);
+
+app.use(cookieParser());
+
 
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb', {
@@ -45,8 +52,6 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   // eslint-disable-next-line no-console
   console.log('Connected to MongoDB!!!');
 });
-
-app.use(requestLogger);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
