@@ -1,4 +1,4 @@
-import {BASE_URL} from './userAuth';
+import { BASE_URL } from './constants';
 
 // class Api {
 //   constructor(options) {

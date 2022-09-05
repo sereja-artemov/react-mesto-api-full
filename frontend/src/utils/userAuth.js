@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.mesto.students.nomorepartiesxyz.ru";
+import { BASE_URL } from './constants';
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
