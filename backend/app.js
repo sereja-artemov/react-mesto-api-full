@@ -7,7 +7,7 @@ const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 const cors = require('cors');
 
-const { login, createUser, logout} = require('./controllers/users');
+const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const error = require('./middlewares/error');
 const usersRouter = require('./routes/users');
@@ -16,6 +16,7 @@ const NotFoundError = require('./error/NotFoundError');
 const errCode = require('./const');
 const { signupValidation, signinValidation } = require('./middlewares/validations');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+// const cors = require('./middlewares/cors');
 
 const app = express();
 const { PORT = 3000 } = process.env;
@@ -40,6 +41,7 @@ app.use(express.urlencoded({
   extended: true,
 }));
 
+// app.use(cors);
 app.use(requestLogger);
 
 app.use(cookieParser());
@@ -68,7 +70,7 @@ app.use(auth);
 
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
-app.delete('/logout', logout);
+// app.delete('/logout', logout);
 
 app.use('*', (req, res) => {
   try {

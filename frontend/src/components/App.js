@@ -39,22 +39,32 @@ function App() {
   const [tooltipText, setTooltipText] = useState('');
   const [tooltipImage, setTooltipImage] = useState(undefined);
 
-
   const history = useHistory();
 
   useEffect(() => {
     checkToken();
     if (loggedIn) {
-      api
-        .getUserInfo()
-        .then((data) => setCurrentUser(data))
-        .catch((err) => console.log(err));
-
-      api
-        .getInitialCards()
-        .then((data) => setCards(data.reverse()))
-        .catch((err) => console.log(err));
+      history.push('/');
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+          .then(([user, data]) => {
+            setCurrentUser(user);
+            setCards(data.reverse());
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     }
+    // if (loggedIn) {
+    //   api
+    //     .getUserInfo()
+    //     .then((data) => setCurrentUser(data))
+    //     .catch((err) => console.log(err));
+    //
+    //   api
+    //     .getInitialCards()
+    //     .then((data) => setCards(data.reverse()))
+    //     .catch((err) => console.log(err));
+    // }
   }, [loggedIn]);
 
   function handleEditAvatarClick() {
@@ -198,27 +208,16 @@ function App() {
   };
 
   const checkToken = () => {
-      userAuth
-        .getToken()
-        .then((res) => {
-          if (res) {
-            setUserData(res);
-            setLoggedIn(true);
-            history.push("/");
-          }
-        })
-        .catch((err) => err);
-
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      setLoggedIn(true);
+    }
   };
 
   function onClickExit() {
-    userAuth.logout()
-        .then((res) => {
-          localStorage.removeItem('jwt');
-          setLoggedIn(false);
-          history.push("/sign-in");
-        })
-        .catch((err) => err);
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+    // history.push("/sign-in");
   }
 
   function openTooltip(image, text) {

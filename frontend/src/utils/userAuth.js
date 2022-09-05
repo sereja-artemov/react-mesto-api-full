@@ -23,17 +23,17 @@ export const auth = (email, password) => {
   }).then(getData);
 };
 
-export const logout = (email) => {
-  return fetch(`${BASE_URL}/logout`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-    },
-    credentials: 'include',
-    body: JSON.stringify({ 'email': email }),
-  }).then(getData);
-}
+// export const logout = (email) => {
+//   return fetch(`${BASE_URL}/logout`, {
+//     method: "DELETE",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+//     },
+//     credentials: 'include',
+//     body: JSON.stringify({ 'email': email }),
+//   }).then(getData);
+// }
 
 export const getToken = () => {
   return fetch(`${BASE_URL}/users/me`, {

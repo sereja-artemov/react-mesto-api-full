@@ -18,12 +18,12 @@ const login = (req, res, next) => {
         { _id: user._id },
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' });
-      res.cookie('jwt', jwtToken, {
-        maxAge: 3600000 * 24 * 7,
-        httpOnly: true,
-        sameSite: 'none',
-        secure: true,
-      })
+      // res.cookie('jwt', jwtToken, {
+      //   maxAge: 3600000 * 24 * 7,
+      //   httpOnly: true,
+      //   sameSite: 'none',
+      //   secure: true,
+      // })
       res.send({ token: jwtToken });
       // .send({message: 'Авторизация прошла успешно'})
     })
@@ -119,18 +119,18 @@ const updateAvatar = (req, res, next) => {
     .catch(next);
 };
 
-const logout = (req, res, next) => {
-
-    const { jwt } = req.cookies;
-
-    if (!jwt) {
-      throw new ValidationError('Отсутствует токен');
-    }
-
-    res.status(200).clearCookie('jwt')
-      .send({ message: 'Вы успешно вышли из системы!' })
-      .catch(next);
-};
+// const logout = (req, res, next) => {
+//
+//     const { jwt } = req.cookies;
+//
+//     if (!jwt) {
+//       throw new ValidationError('Отсутствует токен');
+//     }
+//
+//     res.status(200).clearCookie('jwt')
+//       .send({ message: 'Вы успешно вышли из системы!' })
+//       .catch(next);
+// };
 
 module.exports = {
   login,
@@ -140,5 +140,4 @@ module.exports = {
   getUser,
   updateUser,
   updateAvatar,
-  logout,
 };
