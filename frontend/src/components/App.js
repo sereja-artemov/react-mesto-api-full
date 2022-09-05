@@ -10,7 +10,15 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import PopupWidthForm from "./PopupWithForm";
 // import api from "../utils/api";
-import {changeLikeCardStatus, delCard, sendNewCard, sendUserInfo, setUserAvatar} from "../utils/api";
+import {
+  changeLikeCardStatus,
+  delCard,
+  getInitialCards,
+  getUserInfo,
+  sendNewCard,
+  sendUserInfo,
+  setUserAvatar
+} from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import PopupImage from "./PopupImage";
 import InfoTooltip from "./InfoTooltip";
