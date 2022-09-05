@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 require('dotenv').config();
-
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
@@ -19,21 +18,22 @@ const { signupValidation, signinValidation } = require('./middlewares/validation
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 
-// const options = {
-//   origin: '*',
-//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-//   preflightContinue: false,
-//   optionsSuccessStatus: 204,
-//   allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
-//   credentials: true,
-// };
-//
-// app.use(cors(options));
+const options = {
+  origin: [
+    'http://localhost:3005',
+    'https://frontend.mesto.students.nomorepartiesxyz.ru',
+    'https://sereja-artemov.github.io/',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
 
-app.use(cors());
-app.options('*', cors());
+app.use('*', cors(options));
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -66,6 +66,8 @@ app.post('/signin', signinValidation, login);
 
 app.use(auth);
 
+app.use('/users', usersRouter);
+app.use('/cards', cardsRouter);
 app.delete('/logout', logout);
 
 app.use('*', (req, res) => {
