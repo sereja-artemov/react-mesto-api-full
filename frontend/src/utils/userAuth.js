@@ -11,7 +11,7 @@ export const register = (email, password) => {
 };
 
 export const auth = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch('http://api.mesto.students.nomorepartiesxyz.ru/signin', {
     method: "POST",
     headers: {
       Accept: 'application/json',
