@@ -9,7 +9,8 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import PopupWidthForm from "./PopupWithForm";
-import api from "../utils/api";
+// import api from "../utils/api";
+import {changeLikeCardStatus, delCard, sendNewCard, sendUserInfo, setUserAvatar} from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import PopupImage from "./PopupImage";
 import InfoTooltip from "./InfoTooltip";
@@ -100,8 +101,7 @@ function App() {
 
   function handleUpdateUser(userInfo) {
     setIsLoading(true);
-    api
-      .sendUserInfo(userInfo)
+    sendUserInfo(userInfo)
       .then((res) => {
         setUserData(res);
         closeAllPopups();
@@ -115,8 +115,7 @@ function App() {
   }
 
   function handleUpdateAvatar({ avatar: avatarLink }) {
-    api
-      .setUserAvatar(avatarLink)
+    setUserAvatar(avatarLink)
       .then((res) => {
         setUserData(res);
         closeAllPopups();
@@ -131,8 +130,7 @@ function App() {
     const isLiked = card.likes.some((like) => like._id === userData._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api
-      .changeLikeCardStatus(card._id, isLiked)
+    changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
@@ -142,8 +140,7 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api
-      .delCard(card)
+    delCard(card)
       .then(() => {
         setCards(cards.filter((cardEl) => cardEl._id !== card._id));
       })
@@ -153,8 +150,7 @@ function App() {
   }
 
   function handleAddPlaceSubmit(cardData) {
-    api
-      .sendNewCard(cardData)
+    sendNewCard(cardData)
       .then((card) => {
         setCards([card, ...cards]);
         closeAllPopups();
