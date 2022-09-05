@@ -25,6 +25,7 @@ const options = {
   origin: [
     'http://localhost:3005',
     'https://frontend.mesto.students.nomorepartiesxyz.ru',
+    'http://frontend.mesto.students.nomorepartiesxyz.ru',
     'https://sereja-artemov.github.io/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
@@ -45,7 +46,6 @@ app.use(express.urlencoded({
 app.use(requestLogger);
 
 // app.use(cookieParser());
-
 
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb', {
