@@ -30,7 +30,7 @@ const options = {
   credentials: true,
 };
 
-app.use(cors());
+app.use(cors(options));
 
 // app.use(cors());
 // app.options('*', cors());
@@ -66,8 +66,6 @@ app.post('/signin', signinValidation, login);
 
 app.use(auth);
 
-app.use('/users', usersRouter);
-app.use('/cards', cardsRouter);
 app.delete('/logout', logout);
 
 app.use('*', (req, res) => {
