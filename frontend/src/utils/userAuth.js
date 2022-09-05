@@ -1,4 +1,4 @@
-export const BASE_URL = "http://api.mesto.students.nomorepartiesxyz.ru";
+export const BASE_URL = "https://api.mesto.students.nomorepartiesxyz.ru";
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -11,7 +11,7 @@ export const register = (email, password) => {
 };
 
 export const auth = (email, password) => {
-  return fetch('http://api.mesto.students.nomorepartiesxyz.ru/signin', {
+  return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
       Accept: 'application/json',
