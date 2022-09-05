@@ -1,7 +1,10 @@
 const allowedCors = [
   'https://api.mesto.students.nomorepartiesxyz.ru',
+  'http://api.mesto.students.nomorepartiesxyz.ru',
   'https://frontend.mesto.students.nomorepartiesxyz.ru',
+  'http://frontend.mesto.students.nomorepartiesxyz.ru',
   'http://localhost:3000',
+  'http://localhost:3005',
 ];
 
 module.exports = ((req, res, next) => {
