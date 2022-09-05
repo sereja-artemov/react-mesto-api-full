@@ -33,7 +33,7 @@ const delCard = (req, res, next) => {
 const addLikeCard = (req, res, next) => {
   cardModel.findByIdAndUpdate(
     req.params.cardId,
-    { $addToSet: { likes: {_id: req.user._id} } }, // добавить _id в массив, если его там нет
+    { $addToSet: { likes: { _id: req.user._id } } }, // добавить _id в массив, если его там нет
     { new: true },
   )
     .then((card) => {
@@ -48,7 +48,7 @@ const addLikeCard = (req, res, next) => {
 const removeLikeCard = (req, res, next) => {
   cardModel.findByIdAndUpdate(
     req.params.cardId,
-    { $pull: { likes: {_id: req.user._id} } }, // убрать _id из массива
+    { $pull: { likes: { _id: req.user._id } } }, // убрать _id из массива
     { new: true },
   )
     .then((card) => {

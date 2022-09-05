@@ -17,7 +17,8 @@ const login = (req, res, next) => {
       const jwtToken = jsonwebtoken.sign(
         { _id: user._id },
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-        { expiresIn: '7d' });
+        { expiresIn: '7d' }
+      );
       // res.cookie('jwt', jwtToken, {
       //   maxAge: 3600000 * 24 * 7,
       //   httpOnly: true,

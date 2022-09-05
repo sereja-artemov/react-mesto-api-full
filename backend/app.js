@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 // const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const { celebrate, Joi } = require('celebrate');
+// const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 const cors = require('cors');
 
@@ -44,7 +44,6 @@ app.use(express.urlencoded({
 
 // app.use(cors);
 app.use(requestLogger);
-
 // app.use(cookieParser());
 
 // подключаемся к серверу mongo
