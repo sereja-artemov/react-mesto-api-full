@@ -8,32 +8,44 @@ class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._getData);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._getData);
   }
 
   sendUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
       body: JSON.stringify(data),
-      credentials: 'include',
     }).then(this._getData);
   }
 
   sendNewCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -44,43 +56,58 @@ class Api {
   setUserAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
       body: JSON.stringify({
         avatar: avatar,
       }),
-      credentials: 'include',
     }).then(this._getData);
   }
 
   delCard(data) {
     return fetch(`${this._baseUrl}/cards/${data._id}`, {
       method: "DELETE",
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._getData);
   }
 
   setLike(dataId) {
     return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
       method: "PUT",
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._getData);
   }
 
   removeLike(dataId) {
     return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
       method: "DELETE",
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._getData);
   }
 
   changeLikeCardStatus(dataId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${dataId}/likes`, {
       method: isLiked ? "DELETE" : "PUT",
-      headers: this._headers,
-      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     }).then(this._getData);
   }
 
@@ -93,7 +120,7 @@ const api = new Api({
   baseUrl: BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    // Authorization: `Bearer ${ localStorage.getItem('jwt') }`,
   },
 });
 

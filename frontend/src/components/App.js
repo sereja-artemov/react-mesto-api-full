@@ -32,7 +32,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState({});
-  const [currentUser, setCurrentUser] = useState({});
+  // const [userData, setUserData] = useState({});
   const [cards, setCards] = useState([]);
 
   const [userData, setUserData] = useState({});
@@ -47,24 +47,13 @@ function App() {
       history.push('/');
       Promise.all([api.getUserInfo(), api.getInitialCards()])
           .then(([user, data]) => {
-            setCurrentUser(user);
+            setUserData(user);
             setCards(data.reverse());
           })
           .catch((error) => {
             console.log(error);
           });
     }
-    // if (loggedIn) {
-    //   api
-    //     .getUserInfo()
-    //     .then((data) => setCurrentUser(data))
-    //     .catch((err) => console.log(err));
-    //
-    //   api
-    //     .getInitialCards()
-    //     .then((data) => setCards(data.reverse()))
-    //     .catch((err) => console.log(err));
-    // }
   }, [loggedIn]);
 
   function handleEditAvatarClick() {
@@ -114,7 +103,7 @@ function App() {
     api
       .sendUserInfo(userInfo)
       .then((res) => {
-        setCurrentUser(res);
+        setUserData(res);
         closeAllPopups();
       })
       .catch((err) => {
@@ -129,7 +118,7 @@ function App() {
     api
       .setUserAvatar(avatarLink)
       .then((res) => {
-        setCurrentUser(res);
+        setUserData(res);
         closeAllPopups();
       })
       .catch((err) => {
@@ -139,7 +128,7 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((like) => like._id === currentUser._id);
+    const isLiked = card.likes.some((like) => like._id === userData._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
@@ -175,9 +164,9 @@ function App() {
       });
   }
 
-  const onRegister = ({ email, password }) => {
+  function onRegister({ email, password }) {
     setIsLoading(true);
-    return userAuth
+    userAuth
       .register(email, password)
       .then((res) => {
         if (res) {
@@ -191,11 +180,10 @@ function App() {
         openTooltip(crossImage, 'Что-то пошло не так! Попробуйте ещё раз.');
       })
       .finally(() => setIsLoading(false));
-  };
+  }
 
-  const onLogin = ({ email, password }) => {
-    setIsLoading(true);
-    return userAuth
+  function onLogin({ email, password }) {
+    userAuth
       .auth(email, password)
       .then((res) => {
         localStorage.setItem('jwt', res.token);
@@ -204,19 +192,19 @@ function App() {
       .catch((err) => {
         openTooltip(crossImage, 'Что-то пошло не так! Попробуйте ещё раз.');
       })
-      .finally(() => setIsLoading(false));
-  };
+  }
 
-  const checkToken = () => {
+  function checkToken() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       setLoggedIn(true);
     }
-  };
+  }
 
   function onClickExit() {
-    localStorage.removeItem('jwt');
     setLoggedIn(false);
+    localStorage.removeItem('jwt');
+    setUserData({});
     // history.push("/sign-in");
   }
 
@@ -227,7 +215,7 @@ function App() {
   }
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={userData}>
       <div>
         <Header
           loggedIn={loggedIn}
