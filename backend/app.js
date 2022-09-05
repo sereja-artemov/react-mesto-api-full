@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
-const cors = require('cors');
+// const cors = require('cors');
 
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
@@ -16,34 +16,34 @@ const NotFoundError = require('./error/NotFoundError');
 const errCode = require('./const');
 const { signupValidation, signinValidation } = require('./middlewares/validations');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// const cors = require('./middlewares/cors');
+const cors = require('./middlewares/cors');
 
 const app = express();
 const { PORT = 3000 } = process.env;
 
-const options = {
-  origin: [
-    'http://localhost:3005',
-    'http://localhost:3000',
-    'https://frontend.mesto.students.nomorepartiesxyz.ru',
-    'http://frontend.mesto.students.nomorepartiesxyz.ru',
-    'https://sereja-artemov.github.io/',
-  ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
-  credentials: true,
-};
-
-app.use('*', cors(options));
+// const options = {
+//   origin: [
+//     'http://localhost:3005',
+//     'http://localhost:3000',
+//     'https://frontend.mesto.students.nomorepartiesxyz.ru',
+//     'http://frontend.mesto.students.nomorepartiesxyz.ru',
+//     'https://sereja-artemov.github.io/',
+//   ],
+//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+//   preflightContinue: false,
+//   optionsSuccessStatus: 204,
+//   allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+//   credentials: true,
+// };
+//
+// app.use('*', cors(options));
 
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true,
 }));
 
-// app.use(cors);
+app.use(cors);
 app.use(requestLogger);
 
 app.use(cookieParser());
