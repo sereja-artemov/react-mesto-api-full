@@ -46,7 +46,7 @@ function App() {
     checkToken();
     if (loggedIn) {
       history.push('/');
-      Promise.all([api.getUserInfo(), api.getInitialCards()])
+      Promise.all([getUserInfo(), getInitialCards()])
           .then(([user, data]) => {
             setUserData(user);
             setCards(data.reverse());
