@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 // const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const { celebrate, Joi } = require('celebrate');
+// const { celebrate, Joi } = require('celebrate');
 const { errors } = require('celebrate');
 const cors = require('cors');
 
@@ -25,6 +25,7 @@ const options = {
   origin: [
     'http://localhost:3005',
     'https://frontend.mesto.students.nomorepartiesxyz.ru',
+    'http://frontend.mesto.students.nomorepartiesxyz.ru',
     'https://sereja-artemov.github.io/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
@@ -43,9 +44,7 @@ app.use(express.urlencoded({
 
 // app.use(cors);
 app.use(requestLogger);
-
 // app.use(cookieParser());
-
 
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb', {
