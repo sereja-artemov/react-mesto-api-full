@@ -27,11 +27,11 @@ const signinValidation = celebrate({
   }),
 });
 
-const getUserValidation = celebrate({
-  params: Joi.object().keys({
-    userId: Joi.string().hex().length(24).required(),
-  }),
-});
+// const getUserValidation = celebrate({
+//   params: Joi.object().keys({
+//     userId: Joi.string().hex().length(24).required(),
+//   }),
+// });
 
 const patchUserValidation = celebrate({
   body: Joi.object().keys({
